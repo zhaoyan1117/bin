@@ -2,7 +2,7 @@
 
 =begin
 Function: Build and open(if build success) an latex file with pdflatex on Mac.
-Usage: 1. Install MaxTeX
+Usage: 1. Install MacTeX
        2. Make this file executable (chmod +x bol)
        3. cp this file to /usr/bin
 =end
