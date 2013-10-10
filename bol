@@ -1,0 +1,24 @@
+#! /usr/bin/ruby
+
+=begin
+Function: Build and open(if build success) an latex file with pdflatex on Mac.
+Usage: 1. Install MaxTeX
+       2. Make this file executable (chmod +x bol)
+       3. cp this file to /usr/bin
+=end
+
+if ARGV[0]
+  tex_file = ARGV[0]
+  pdf_file = "#{tex_file.split('.')[0]}.pdf"
+
+  build_command = %Q{
+  if pdflatex #{tex_file};
+    then
+      open #{pdf_file};
+  fi
+  }
+
+  system build_command
+else
+  puts "Please specify a tex file!"
+end
