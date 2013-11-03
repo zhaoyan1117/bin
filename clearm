@@ -1,0 +1,46 @@
+#! /usr/bin/python
+
+"""
+Function: Clear the metadate files for finder (._* and .DS_Store) in the current directory.
+Usage: 1. Make this file executable (chmod +x clearm)
+       2. cp this file to /usr/bin
+"""
+
+import sys
+import os
+
+def ask_for_continue(msg):
+    while True:
+        decision = raw_input(msg)
+        if decision in ['y', 'Y', 'yes', 'YES', 'Yes']:
+            return True
+        elif decision in ['n', 'N', 'No', 'NO', 'no']:
+            return False
+
+# for ._* files.
+search_command = "find . -name \"._*\"" 
+exit = os.system(search_command)
+
+if exit == 0:
+    if ask_for_continue('Delete? (y/n): '):
+        clear_command = search_command + " -delete"
+        os.system(clear_command) 
+        print "Done!"
+    else:
+        print "Nothing deleted!"
+
+
+# for .DS_Store files.
+if ask_for_continue('Continue for .DS_Store? (y/n): '):
+    search_command = "find . -name \".DS_Store\"" 
+    exit = os.system(search_command)
+
+    if exit == 0:
+        if ask_for_continue('Delete? (y/n): '):
+            clear_command = search_command + " -delete"
+            os.system(clear_command) 
+            print "Done!"
+        else:
+            print "Nothing deleted!"
+else:
+    print ("Bye")
